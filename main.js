@@ -29,6 +29,15 @@ const productos = [
   new Producto(19, 'Té', 2.45, 'https://www.lahoradelascompras.com/showProductImage/1764266853_5D24A661-6B69-1FBF-1531-9E499127DBB3.jpg')
 ];
 
+// Array para almacenar los productos del carrito
+let carrito = [];
+
+// Función para actualizar el contador del carrito
+function actualizarContadorCarrito() {
+  const contadorSpan = document.getElementById('contadorCarrito');
+  contadorSpan.textContent = carrito.length;
+}
+
 function mostrarProductos() {
   const contenedor = document.getElementById('productosTotales');
   contenedor.innerHTML = '';
@@ -93,11 +102,20 @@ function buscarProductos() {
 
 function agregarAlCarrito(id) {
   const producto = productos.find(p => p.id === id);
-  alert(`Agregaste ${producto.nombre} al carrito`);
+  
+  // agrega el producto al array del carrito
+  carrito.push(producto);
+  
+  // actualiza el contador del carrito
+  actualizarContadorCarrito();
+  
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   mostrarProductos();
+  
+  // empieza con el contador en 0
+  actualizarContadorCarrito();
   
   // busca el icono de búsqueda por id
   const iconoLupa = document.getElementById('buscador');
@@ -106,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // busca cuando se hace clic en la lupa
   iconoLupa.addEventListener('click', buscarProductos);
   
-  // tambien buscar al toca enter
+  // tambien buscar al tocar enter
   inputBusqueda.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
       buscarProductos();
