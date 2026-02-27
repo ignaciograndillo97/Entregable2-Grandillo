@@ -29,13 +29,19 @@ const productos = [
   new Producto(19, 'Té', 2.45, 'https://www.lahoradelascompras.com/showProductImage/1764266853_5D24A661-6B69-1FBF-1531-9E499127DBB3.jpg')
 ];
 
-// Array para almacenar los productos del carrito
 let carrito = [];
 
-// Función para actualizar el contador del carrito
-function actualizarContadorCarrito() {
+// actualiza el contador y el total del carrito
+function actualizarCarrito() {
   const contadorSpan = document.getElementById('contadorCarrito');
+  const totalSpan = document.getElementById('totalCarrito');
+  
+  // ctualiza el contador
   contadorSpan.textContent = carrito.length;
+  
+  // calcula y actualiza total
+  const total = carrito.reduce((suma, producto) => suma + producto.precio, 0);
+  totalSpan.textContent = total.toFixed(2);
 }
 
 function mostrarProductos() {
@@ -103,19 +109,21 @@ function buscarProductos() {
 function agregarAlCarrito(id) {
   const producto = productos.find(p => p.id === id);
   
-  // agrega el producto al array del carrito
   carrito.push(producto);
   
-  // actualiza el contador del carrito
-  actualizarContadorCarrito();
-  
+  // actualizar el contador y el total en el HTML
+  actualizarCarrito();
+}
+
+// calcula el total
+function calcularTotalCarrito() {
+  return carrito.reduce((suma, producto) => suma + producto.precio, 0);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   mostrarProductos();
-  
-  // empieza con el contador en 0
-  actualizarContadorCarrito();
+
+  actualizarCarrito();
   
   // busca el icono de búsqueda por id
   const iconoLupa = document.getElementById('buscador');

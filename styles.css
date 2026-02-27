@@ -59,6 +59,7 @@ h1 {
     background-color: #f8f9fa;
     border-radius: 4px;
     border: 1px solid #ddd;
+    white-space: nowrap;
 }
 
 #contadorCarrito {
@@ -66,6 +67,13 @@ h1 {
     color: #e74c3c;
     font-size: 20px;
     margin-left: 5px;
+}
+
+#totalCarrito {
+    font-weight: bold;
+    color: #27ae60;
+    font-size: 20px;
+    margin-left: 3px;
 }
 
 #productosTotales {
@@ -149,32 +157,4 @@ h1 {
     background: white;
     border-radius: 8px;
     grid-column: 1 / -1;
-}
-
-/* Media query para pantallas más pequeñas */
-@media (max-width: 768px) {
-    .searchbar {
-        flex-direction: column;
-        gap: 15px;
-        padding: 0;
-    }
-    
-    .searchbar > div:first-child {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .searchbar input {
-        width: 100%;
-        max-width: 300px;
-    }
-    
-    .searchbar > div:last-child p {
-        width: fit-content;
-        margin: 0 auto;
-    }
-    
-    #productosTotales {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    }
 }
