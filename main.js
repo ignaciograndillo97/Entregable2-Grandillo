@@ -31,17 +31,34 @@ const productos = [
 
 let carrito = [];
 
+// guarda el carrito en localStorage
+function guardarCarrito() {
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+// carga el carrito desde localStorage
+function cargarCarrito() {
+  const carritoGuardado = localStorage.getItem('carrito');
+  if (carritoGuardado) {
+    carrito = JSON.parse(carritoGuardado);
+  } else {
+    carrito = [];
+  }
+}
+
 // actualiza el contador y el total del carrito
 function actualizarCarrito() {
   const contadorSpan = document.getElementById('contadorCarrito');
   const totalSpan = document.getElementById('totalCarrito');
   
-  // ctualiza el contador
+  // actualiza el contador
   contadorSpan.textContent = carrito.length;
   
   // calcula y actualiza total
   const total = carrito.reduce((suma, producto) => suma + producto.precio, 0);
   totalSpan.textContent = total.toFixed(2);
+  
+  guardarCarrito();
 }
 
 function mostrarProductos() {
@@ -111,8 +128,9 @@ function agregarAlCarrito(id) {
   
   carrito.push(producto);
   
-  // actualizar el contador y el total en el HTML
+  // actualizar el contador y el total en el HTML (y guardar en localStorage)
   actualizarCarrito();
+  
 }
 
 // calcula el total
@@ -120,9 +138,27 @@ function calcularTotalCarrito() {
   return carrito.reduce((suma, producto) => suma + producto.precio, 0);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  mostrarProductos();
+// vaciar el carrito
 
+function vaciarCarrito() {
+  carrito = [];
+  actualizarCarrito();
+}
+
+// boton para vaciar carrito
+  
+  const btnVaciar = document.getElementById('vaciarCarrito');
+  if (btnVaciar) {
+    btnVaciar.addEventListener('click', vaciarCarrito);
+  }
+
+document.addEventListener('DOMContentLoaded', () => {
+  // carga el carrito guardado 
+  cargarCarrito();
+  
+  mostrarProductos();
+  
+  // actualiza el contador y el total
   actualizarCarrito();
   
   // busca el icono de búsqueda por id
@@ -138,4 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
       buscarProductos();
     }
   });
+  
+  
 });
