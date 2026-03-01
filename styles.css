@@ -1,3 +1,4 @@
+/* Estilos principales */
 .lista-productos {
     display: flex;
     flex-wrap: wrap;
@@ -60,6 +61,9 @@ h1 {
     border-radius: 4px;
     border: 1px solid #ddd;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 #contadorCarrito {
@@ -74,6 +78,37 @@ h1 {
     color: #27ae60;
     font-size: 20px;
     margin-left: 3px;
+}
+
+#vaciarCarrito {
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.2s;
+}
+
+#vaciarCarrito:hover {
+    color: #c0392b;
+}
+
+/* Botón Ver Carrito */
+.btn-ver-carrito {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 10px;
+    transition: background-color 0.2s;
+}
+
+.btn-ver-carrito:hover {
+    background-color: #2980b9;
 }
 
 #productosTotales {
@@ -157,4 +192,282 @@ h1 {
     background: white;
     border-radius: 8px;
     grid-column: 1 / -1;
+}
+
+/* ===== ESTILOS DEL MODAL ===== */
+/* Estos estilos solo afectan al modal y no al resto de la página */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal .modal-contenido {
+    background-color: white;
+    margin: 50px auto;
+    padding: 0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    animation: slideDown 0.3s;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    background-color: #f8f9fa;
+    border-radius: 8px 8px 0 0;
+}
+
+.modal .modal-header h2 {
+    margin: 0;
+    color: #333;
+    font-size: 24px;
+}
+
+.modal .modal-header h2 i {
+    color: #3498db;
+    margin-right: 10px;
+}
+
+.modal .cerrar-modal {
+    font-size: 28px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal .cerrar-modal:hover {
+    color: #333;
+}
+
+.modal .modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+    max-height: 400px;
+}
+
+/* Productos en el carrito (solo dentro del modal) */
+.modal .producto-carrito {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    gap: 15px;
+    transition: background-color 0.2s;
+}
+
+.modal .producto-carrito:hover {
+    background-color: #f8f9fa;
+}
+
+.modal .producto-carrito:last-child {
+    border-bottom: none;
+}
+
+.modal .producto-carrito-imagen {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.modal .producto-carrito-info {
+    flex: 1;
+}
+
+.modal .producto-carrito-nombre {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.modal .producto-carrito-precio {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+.modal .btn-eliminar-item {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.modal .btn-eliminar-item:hover {
+    background-color: #c0392b;
+}
+
+.modal .modal-footer {
+    padding: 20px;
+    border-top: 2px solid #f0f0f0;
+    background-color: #f8f9fa;
+    border-radius: 0 0 8px 8px;
+}
+
+.modal .total-modal {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.modal .total-modal span {
+    color: #2ecc71;
+    font-size: 24px;
+    margin-left: 5px;
+}
+
+.modal .modal-botones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal .btn-vaciar {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.2s;
+}
+
+.modal .btn-vaciar:hover {
+    background-color: #c0392b;
+}
+
+.modal .btn-cerrar {
+    background-color: #95a5a6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.2s;
+}
+
+.modal .btn-cerrar:hover {
+    background-color: #7f8c8d;
+}
+
+.modal .carrito-vacio {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+
+.modal .carrito-vacio i {
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+.modal .carrito-vacio p {
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Media query para móviles */
+@media (max-width: 768px) {
+    .searchbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 0;
+    }
+    
+    .searchbar > div:first-child {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .searchbar input {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .searchbar > div:last-child p {
+        width: fit-content;
+        margin: 0 auto;
+        white-space: normal;
+        text-align: center;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .btn-ver-carrito {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    #productosTotales {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+    
+    /* Estilos responsive para el modal */
+    .modal .modal-contenido {
+        margin: 20px auto;
+        width: 95%;
+        max-height: 90vh;
+    }
+    
+    .modal .modal-botones {
+        flex-direction: column;
+    }
+    
+    .modal .btn-vaciar,
+    .modal .btn-cerrar {
+        width: 100%;
+        justify-content: center;
+    }
 }
