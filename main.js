@@ -158,15 +158,15 @@ function actualizarModalCarrito() {
   }
   
   let html = '';
-  carrito.forEach((producto, index) => {
+  carrito.forEach((producto, i) => {
     html += `
       <div class="producto-carrito">
-        <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-carrito-imagen" onerror="this.src='https://via.placeholder.com/60'">
+        <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-carrito-imagen">
         <div class="producto-carrito-info">
           <div class="producto-carrito-nombre">${producto.nombre}</div>
           <div class="producto-carrito-precio">$${producto.precio.toFixed(2)}</div>
         </div>
-        <button class="btn-eliminar-item" onclick="eliminarDelCarrito(${index})">
+        <button class="btn-eliminar-item" onclick="eliminarDelCarrito(${i})">
           <i class="fas fa-trash"></i>
         </button>
       </div>
