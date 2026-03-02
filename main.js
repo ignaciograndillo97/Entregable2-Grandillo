@@ -67,8 +67,8 @@ function mostrarProductos() {
     productoDiv.innerHTML = `
       <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
       <div class="producto-info">
-        <span class="producto-nombre">${producto.nombre}</span>
-        <span class="producto-precio">$${producto.precio.toFixed(2)}</span>
+        <p class="producto-nombre">${producto.nombre}</p>
+        <p class="producto-precio">$${producto.precio.toFixed(2)}</p>
       </div>
       <button class="btn-agregar" onclick="agregarAlCarrito(${producto.id})">
         <i class="fas fa-cart-plus"></i> Agregar
@@ -106,8 +106,8 @@ function buscarProductos() {
     productoDiv.innerHTML = `
       <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-imagen">
       <div class="producto-info">
-        <span class="producto-nombre">${producto.nombre}</span>
-        <span class="producto-precio">$${producto.precio.toFixed(2)}</span>
+        <p class="producto-nombre">${producto.nombre}</p>
+        <p class="producto-precio">$${producto.precio.toFixed(2)}</p>
       </div>
       <button class="btn-agregar" onclick="agregarAlCarrito(${producto.id})">
         <i class="fas fa-cart-plus"></i> Agregar
